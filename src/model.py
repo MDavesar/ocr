@@ -53,7 +53,13 @@ class Model:
 
     def ocr_create(self):
         logging.info('Inside OCR create')
-        img = cv2.imread(self.image_path)
+        try:
+            logging.info(self.image_path)
+            img = cv2.imread(self.image_path)
+            logging.info('cv2 running fine')
+        except:
+            logging.info('cv2 function gave an error')
+    
         custom_config = r'--oem 3 --psm 4'
         text = pytesseract.image_to_string(img, config=custom_config)
         return text
