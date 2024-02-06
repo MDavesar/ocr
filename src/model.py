@@ -37,7 +37,7 @@ class Model:
                 print(f'Directory "{directory_path}" created.')
             else:
                 print(f'Directory "{directory_path}" already exists.')
-            self.image_path = os.path.join(directory_path,'ocr_image')
+            self.image_path = os.path.join(directory_path,'ocr_image.jpg')
             logging.info('Trying I/O open the image')
             image = Image.open(BytesIO(response.content))
             logging.info('Showing the Image')
@@ -46,7 +46,7 @@ class Model:
                 image.show()
             '''
             logging.info('Saving the Image')
-            image.save(self.image_path, format='JPEG')
+            image.save(self.image_path)
 
         except requests.exceptions.RequestException as e:
             print(f"Error downloading image: {e}")
