@@ -8,7 +8,7 @@ import os
 import cv2
 import json
 import logging
-from model import Model
+from src.model import Model
 from flask_basicauth import BasicAuth
 
 
