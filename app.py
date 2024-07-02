@@ -10,6 +10,7 @@ import json
 import logging
 from src.model import Model
 from flask_basicauth import BasicAuth
+import time
 
 
 ## logging 
@@ -32,6 +33,9 @@ basic_auth = BasicAuth(app)
 def welcome():
 #    if request.method == 'POST':
     try:
+        
+        model_response = {}
+        model_response['model_name'] = "Google Tesseract"
         ## assuming the api to get a json file
         logging.info('Trying to access the json file')
         response =request.get_json()
@@ -44,11 +48,16 @@ def welcome():
         print(image_url)
 
         ## calling our model
+        start_time = time.time()
         logging.info('Calling our Model')
         model =  Model(image_url)
         logging.info('Model working completed')
         text =model.run()
-        return text
+        end_time = time.time()
+        execution_time = end_time - start_time
+        model_response['execution_time'] = round(execution_time,2)
+        model_response['text'] = text
+        return jsonify(model_response)
     except Exception as e:
         #lgr.exception(e)
         logging.error('This is an error message')
