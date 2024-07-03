@@ -64,7 +64,7 @@ def welcome():
 
         error_m1 = "It's either that you have rendered some inputs empty or its values are out of the range."
         error_m2 = "Please try again with apt values!"
-        return "error"
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':
