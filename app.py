@@ -35,7 +35,7 @@ def welcome():
     try:
         
         model_response = {}
-        model_response['model_name'] = "Google Tesseract"
+        model_response['model_name'] = "OCRTesseract_4July2024"
         ## assuming the api to get a json file
         logging.info('Trying to access the json file')
         response =request.get_json()
